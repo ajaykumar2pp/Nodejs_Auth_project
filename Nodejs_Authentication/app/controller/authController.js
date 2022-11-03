@@ -85,7 +85,8 @@ function authController() {
                     user.changePassword(req.body.oldpassword,
                         req.body.newpassword, function (err) {
                             if (err) {
-                                resp.send(err);
+                                req.flash('error', 'Plz Valid password')
+                                return resp.redirect('/reset')
                             } else {
                                 return resp.redirect('/signin')
                             }
